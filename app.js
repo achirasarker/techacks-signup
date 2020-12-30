@@ -24,7 +24,7 @@ app.post("/", function(req, res){
       {
         email_address: email,
         status: "subscribed",
-        merge_fields: { //since merge fields is type object so use {}
+        merge_fields: { 
           FNAME: firstName,
           LNAME: lastName
         }
@@ -33,10 +33,10 @@ app.post("/", function(req, res){
   };
 
   const jsonData = JSON.stringify(data); //so data can be in string format
-  const url = "https://us7.api.mailchimp.com/3.0/lists/1967863e8d";
+  const url = "https://usX.api.mailchimp.com/3.0/lists/listId";
   const options = {
     method: "POST",
-    auth: "techacks1:168afead9514646526adab9d64fe276f-us7"
+    auth: "techacks1:apiKey"
   };
 
   const request = https.request(url, options, function(response){
@@ -62,13 +62,7 @@ app.post("/failure", function(req, res){
   res.redirect("/");
 })
 
-app.listen(process.env.PORT || 3000, function(){ //process.env.PORT is a dynamic port that heroku will define on the go
+//process.env.PORT is a dynamic port that heroku will define on the go
+app.listen(process.env.PORT || 3000, function(){ 
   console.log("Server is running on port 3000.");
 });
-
-//apiKey
-// 168afead9514646526adab9d64fe276f-us7
-// 5fc118c3e08ca36d593d187fd6a606a0-us7
-
-//listid
-//1967863e8d
